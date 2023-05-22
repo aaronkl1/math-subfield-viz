@@ -16,6 +16,8 @@ def catCount(cat1, cat2) ->  int:
 
 minicat = ['ac','ag','ap','at']
 categories = ['ac','ag','ap','at','ca','co','ct','cv','dg','ds','fa','gm','gn','gr','gt','ho','it','kt','lo','mg','mp','na','nt','oa','oc','pr','qa','ra','rt','sg','sp','st']
+cat_names = ["Commutative Algebra", "Algebraic Geometry", "Analysis of PDEs", "Algebraic Topology", "Classical Analysis and ODEs", "Combinatorics", "Category Theory", "Complex Variables", "Differential Geometry", "Dynamical Systems", "Functional Analysis", "General Mathematics", "General Topology", "Group Theory", "Geometric Topology", "History and Overview", "Information Theory", "K-Theory and Homology", "Logic", "Metric Geometry", "Mathematical Physics", "Numerical Analysis", "Number Theory", "Operator Algebras", "Optimization and Control", "Probability", "Quantum Algebra", "Rings and Algebras", "Representation Theory", "Symplectic Geometry", "Spectral Theory", "Statistics Theory"]
+
 
 def makeTable(cat):
     n = len(cat)
@@ -26,9 +28,9 @@ def makeTable(cat):
             table[j][i] = table[i][j]
     return table
 
-def export(cat, title):
+def export(cat, names, title):
     arr = np.asarray(makeTable(cat))
     filename = '/Users/AaronLi/MISC/Projects/' + title + '.csv'
-    pd.DataFrame(data = arr, index = cat).to_csv(filename, header  = cat) 
+    pd.DataFrame(data = arr, index = names).to_csv(filename, header  = names) 
 
-export(categories, 'categories_new')
+export(categories, cat_names, 'categories_new')
