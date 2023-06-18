@@ -2,7 +2,7 @@ import urllib, urllib.request, re
 import pandas as pd
 import numpy as np
 
-def catCount(cat1, cat2) ->  int:
+def catCount(cat1, cat2) -> int:
     url = 'http://export.arxiv.org/api/query?search_query=cat:math.'+ cat1 + '+AND+cat:math.' + cat2
     data = urllib.request.urlopen(url)
     regex = r'<opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1\.1/">(\d+)</opensearch:totalResults>'
@@ -11,7 +11,10 @@ def catCount(cat1, cat2) ->  int:
     match = re.search(regex, text)
     if match:
         number = match.group(1)
-        return number
+        # Must convert to type int, number variable above is of type string
+        return int(number)
+    # Function expects return value of type int
+    return 0
 
 
 minicat = ['ac','ag','ap','at']
